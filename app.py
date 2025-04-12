@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from risk_assessment import run_quiz_from_conversation
-
+from ML import check
 from chatbot import get_chat_response
 
 app = Flask("her's")
@@ -31,6 +31,40 @@ def chat():
     user_message = request.get_json().get('message', '')
     # Logic: call get_chat_response(user_message) to generate AI-driven reply
     return jsonify({'response': get_chat_response(user_message)})
+
+@app.route("/api/check_scan", methods=["POST"])
+def check_scan():
+    try:
+        # Get base64 or URL of image from the POST body
+        data = request.get_json()
+        img = data.get("image")
+
+        if not img:
+            return jsonify({"error": "No image provided."}), 400
+
+        # Call the ML function and return the result
+        result = check(img)
+        return jsonify(result)
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+@app.route("/api/check_scan", methods=["POST"])
+def check_scan():
+    try:
+        # Get base64 or URL of image from the POST body
+        data = request.get_json()
+        img = data.get("image")
+
+        if not img:
+            return jsonify({"error": "No image provided."}), 400
+
+        # Call the ML function and return the result
+        result = check(img)
+        return jsonify(result)
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
