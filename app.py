@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from risk_assessment import run_quiz_from_conversation
 from ML import check
 from chatbot import get_chat_response
 
 app = Flask("her's")
+CORS(app, origins=["http://localhost:3000"])
 
 # -------------------------------
 # 1. Risk Assessment Route
@@ -18,7 +20,12 @@ def risk_assessment():
             return jsonify({"error": "Conversation must be a non-empty list."}), 400
 
         result = run_quiz_from_conversation(conversation)
-        return jsonify(result)
+        risk_assessment_result=result.get("interpretation",[])
+        if not risk_assessment_result:
+            return jsonify({"message":"Something went wrong"})
+        return jsonify({"risk_assessment_result": risk_assessment_result}), 200
+
+        # return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -35,32 +42,19 @@ def chat():
 @app.route("/api/check_scan", methods=["POST"])
 def check_scan():
     try:
-        # Get base64 or URL of image from the POST body
         data = request.get_json()
-        img = data.get("image")
-
+        img  = data.get("image")
         if not img:
             return jsonify({"error": "No image provided."}), 400
 
-        # Call the ML function and return the result
-        result = check(img)
-        return jsonify(result)
+        # Run your model
+        raw = check(img)
+        preds = raw.get("predictions", [])
 
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-@app.route("/api/check_scan", methods=["POST"])
-def check_scan():
-    try:
-        # Get base64 or URL of image from the POST body
-        data = request.get_json()
-        img = data.get("image")
+        if not preds:
+            return jsonify({"message": "No cancer detected"})  # Return as JSON
 
-        if not img:
-            return jsonify({"error": "No image provided."}), 400
-
-        # Call the ML function and return the result
-        result = check(img)
-        return jsonify(result)
+        return jsonify(preds[0]["class"]) if preds else jsonify({"message": "No cancer detected"})  # Return the first class value
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500

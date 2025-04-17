@@ -40,6 +40,7 @@ Options:
 
 User response: "{user_response}"
 """
+    print(prompt)
     return prompt
 
 # ------------------------------
@@ -207,9 +208,10 @@ def run_quiz_from_conversation(conversation: list, api=GROQ_API_KEY):
         user_name=user_name,
         api_key=GEMINI_API_KEY
     )
+    print(gemini_output)
 
     insights = parse_gemini_response(gemini_output)
-
+    print(insights)
     return {
         "user_name": user_name,
         "total_score": total_score,
