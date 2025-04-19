@@ -7,6 +7,14 @@
 /.next/
 /out/
 
+
+# config
+config.py
+
+#db
+scans.db
+
+
 # production
 /build
 
