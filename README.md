@@ -16,21 +16,16 @@ Her's is a comprehensive full-stack application designed to promote breast cance
 - **Machine Learning:** Roboflow model for breast cancer scan analysis.
 - **AI Services:** Google Gemini and Groq APIs for chatbot and risk assessment quiz.
 
-## Installation and Setup
+## Installation Steps
 
 ### Backend
 1. Clone the repository.
-2. Install Python dependencies (Flask, sqlite3, google-generativeai, groq, inference_sdk, etc.).
-3. Set environment variables for API keys:
-   - `ROBOFLOW` for Roboflow API key.
-   - `GROQ_API_KEY` for Groq API.
-   - `GEMINI_API_KEY` for Google Gemini API.
-4. Initialize the database by running the backend (the app will auto-create the SQLite DB).
-5. Start the Flask server:
+2. Install Python dependencies:
    ```bash
-   python app.py
+   pip install -r requirements.txt
    ```
-
+   (If requirements.txt is not present, install Flask, sqlite3, google-generativeai, groq, inference_sdk, etc. manually.)
+   
 ### Frontend
 1. Navigate to the `frontend` directory.
 2. Install dependencies using npm or yarn:
@@ -39,13 +34,42 @@ Her's is a comprehensive full-stack application designed to promote breast cance
    # or
    yarn install
    ```
-3. Start the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
-4. Access the frontend at `http://localhost:3000`.
+
+## Setup Commands
+1. Set environment variables for API keys:
+   - `ROBOFLOW` for Roboflow API key.
+   - `GROQ_API_KEY` for Groq API.
+   - `GEMINI_API_KEY` for Google Gemini API.
+2. Initialize the database by running the backend (the app will auto-create the SQLite DB).
+3. (Optional) If any additional setup commands are needed, add here.
+
+## Execution Instructions
+
+### Backend
+Start the Flask server:
+```bash
+python src/backend/app.py
+```
+
+### Frontend
+Start the development server:
+```bash
+cd frontend
+npm run dev
+# or
+yarn dev
+```
+Access the frontend at `http://localhost:3000`.
+
+## How to Run Tests
+Run the test suite using the provided script or pytest:
+```bash
+python run_tests.py
+```
+or
+```bash
+pytest tests/
+```
 
 ## Usage
 - Use the web interface to:
