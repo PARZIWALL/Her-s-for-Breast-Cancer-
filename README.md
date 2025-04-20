@@ -1,7 +1,7 @@
-# BrestCare - Breast Cancer Early Detection and Awareness
+# Her's - Breast Cancer Early Detection and Awareness
 
 ## Project Overview
-BrestCare is a comprehensive full-stack application designed to promote breast cancer awareness, early detection, and personalized risk assessment. The platform leverages advanced machine learning models, AI-powered chatbots, and interactive quizzes to empower users with reliable information and tools to take control of their breast health.
+Her's is a comprehensive full-stack application designed to promote breast cancer awareness, early detection, and personalized risk assessment. The platform leverages advanced machine learning models, AI-powered chatbots, and interactive quizzes to empower users with reliable information and tools to take control of their breast health.
 
 ## Features
 - **AI Chatbot:** An intelligent digital health assistant that provides medically reliable answers to breast cancer-related questions, powered by advanced language models.
@@ -68,4 +68,4 @@ For questions or support, please contact the project maintainer.
 
 ---
 
-*BrestCare is dedicated to supporting breast cancer awareness and early detection through innovative technology.*
+*Her's is dedicated to supporting breast cancer awareness and early detection through innovative technology.*
